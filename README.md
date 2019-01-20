@@ -13,12 +13,12 @@
 - run 'npm install' in the project directory after checkout
 - Once all dependencies are installed run 'ng serve' and navigate to http://localhost:4200 to access the  web-app
 
-#Demo :
+# Demo :
 - Navigate to https://abhilashkkale-angular-6-poc-movie-scout.stackblitz.io/#/dashboard 
 - At present the project is hosted via stackblitz, which has issues to load fontawesome icons. Here the icons won't be visible beside column enable to sort.
 - Fixing this issue is in-progress.
 
-#Project code playground/stackblitz :
+# Project code playground/stackblitz :
 - Navigate to https://stackblitz.com/edit/abhilashkkale-angular-6-poc-movie-scout for checking the project code with live load.
 
 
