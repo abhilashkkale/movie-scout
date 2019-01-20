@@ -1,0 +1,152 @@
+<div class="row margin-top-5 padding-left-right-15 dashboard-title-filter">
+  <div class="col-md-6">
+    <span class="table-header padding-left-right-15">Movie Details</span>
+  </div>
+  <div class="col-md-6 pull-right ">
+     <div class="col-md-6">
+      <select class="form-control req-filter" (change)="setFilterType($event)">
+        <option value="" selected="selected">Select Filter Type</option>
+        <option *ngFor="let filterTypeObj of filterTypes">{{filterTypeObj.filterTypeLabel}}</option>
+      </select>
+    </div>    
+    <div class="col-md-6">
+        <div class="search-container">
+            <input type="search" class="form-control" placeholder= "Enter Search Term" [(ngModel)] = "searchTerm" (ngModelChange)="removeAppliedSorting()" type="text"  />
+            <button class="btn btn-search-custom"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div> 
+  </div>
+</div>
+<!--<div class="row">
+   
+</div>-->
+<hr class="line-copy margin-top-5" />
+
+
+<div class="container-fluid padding-bottom-grid">
+  <div class="row">
+        <div class = "table-wrapper">
+            <table id="table" class="table table-contents-font table-bottom-margin">
+                <thead class="custom-table-header">
+                    <th>
+                        <span class="cursor-pointer">
+                                Movie Title
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Director Name
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Actor-1 Name
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Actor-2 Name     
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Genres
+                          <span (click)="applySort(filterTypes[0].filterTypeParam)">
+                                <i *ngIf="selectedSortField == filterTypes[0].filterTypeParam && sortOrder == this.appConstants.ASCENDING_ORDER"
+                                class="fa fa-sort-up active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="selectedSortField == filterTypes[0].filterTypeParam && sortOrder == this.appConstants.DESCENDING_ORDER"
+                                class="fa fa-sort-down active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="this.selectedSortField != filterTypes[0].filterTypeParam"
+                                class="fa fa-sort" aria-hidden="true"></i>
+                          </span>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Language
+                           <span (click)="applySort(filterTypes[1].filterTypeParam)">
+                                <i *ngIf="selectedSortField == filterTypes[1].filterTypeParam && sortOrder == this.appConstants.ASCENDING_ORDER"
+                                class="fa fa-sort-up active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="selectedSortField == filterTypes[1].filterTypeParam && sortOrder == this.appConstants.DESCENDING_ORDER"
+                                class="fa fa-sort-down active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="this.selectedSortField != filterTypes[1].filterTypeParam"
+                                class="fa fa-sort" aria-hidden="true"></i>
+                          </span>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Country
+                            <span (click)="applySort(filterTypes[2].filterTypeParam)">
+                                <i *ngIf="selectedSortField == filterTypes[2].filterTypeParam && sortOrder == this.appConstants.ASCENDING_ORDER"
+                                class="fa fa-sort-up active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="selectedSortField == filterTypes[2].filterTypeParam && sortOrder == this.appConstants.DESCENDING_ORDER"
+                                class="fa fa-sort-down active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="this.selectedSortField != filterTypes[2].filterTypeParam"
+                                class="fa fa-sort" aria-hidden="true"></i>
+                           </span>
+                        </span>
+                    </th>
+                    <th class="content-rating-width">
+                        <span class="cursor-pointer">
+                            Content Rating
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Budget
+                            <span (click)="applySort(filterTypes[3].filterTypeParam)">
+                                <i *ngIf="selectedSortField == filterTypes[3].filterTypeParam && sortOrder == this.appConstants.ASCENDING_ORDER"
+                                class="fa fa-sort-up active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="selectedSortField == filterTypes[3].filterTypeParam && sortOrder == this.appConstants.DESCENDING_ORDER"
+                                class="fa fa-sort-down active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="this.selectedSortField != filterTypes[3].filterTypeParam"
+                                class="fa fa-sort" aria-hidden="true"></i>
+                           </span>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Title Year
+                            <span (click)="applySort(filterTypes[4].filterTypeParam)">
+                                <i *ngIf="selectedSortField == filterTypes[4].filterTypeParam && sortOrder == this.appConstants.ASCENDING_ORDER"
+                                class="fa fa-sort-up active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="selectedSortField == filterTypes[4].filterTypeParam && sortOrder == this.appConstants.DESCENDING_ORDER"
+                                class="fa fa-sort-down active-caret-icon" aria-hidden="true"></i>
+                                <i *ngIf="this.selectedSortField != filterTypes[4].filterTypeParam"
+                                class="fa fa-sort" aria-hidden="true"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            Plot Keywords
+                        </span>
+                    </th>
+                    <th>
+                        <span class="cursor-pointer">
+                            IMDB Link
+                        </span>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tableData of tableData | filter : searchTerm : selectedFilterType | paginate: { itemsPerPage: 10, currentPage: p };  let i = index">
+                        <td> {{tableData.movie_title}}  </td>
+                        <td> {{tableData.director_name}}  </td>
+                        <td> {{tableData.actor_1_name}}  </td>
+                        <td> {{tableData.actor_2_name}} </td>
+                        <td> {{tableData.genres}} </td>
+                        <td> {{tableData.language}} </td>
+                        <td> {{tableData.country}} </td>
+                        <td> {{tableData.content_rating}} </td>
+                        <td>{{tableData.budget}} </td>
+                        <td> {{tableData.title_year}} </td>
+                        <td> {{tableData.plot_keywords}} </td>
+                        <td> <a target="_blank" rel="noopener noreferrer" href="{{tableData.movie_imdb_link}}">IMDB Link</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+             <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+ </div>
+</div>

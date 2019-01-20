@@ -1,0 +1,53 @@
+@import 'variables';
+
+.footer-hr{
+  margin-top: 56px;
+  width: 97%;
+  margin-bottom: 10px;
+  border-top: 1px solid $dark-gray;
+}
+
+.cursor-pointer{
+  cursor:pointer;
+}
+
+.dc-bg-grey {
+    background-color: #ebedf0;
+}
+
+.dc-bg-white {
+    background-color: white;
+}
+
+.active-caret-icon{
+  color :  $dark-steel-blue;
+  font-size:12px !important;
+}
+
+.no-result-message {
+  font-size: 20px;
+}
+
+
+.line-copy {
+    width: 96%;
+    border: solid 0.5px;
+    margin: 0px auto;
+    margin-top: 10px;
+    margin-bottom: 0px !important;
+}
+
+.header-footer{
+    display: block;
+    padding: 15px 20px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    background-color: #0275d8;
+}
+
+.table-header {
+     font-size: 20px;
+    color: dimgrey;
+    line-height: 44px;
+}
